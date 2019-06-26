@@ -26,6 +26,7 @@ import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.gbl.Gbl;
 import org.matsim.core.scenario.ScenarioUtils;
+import org.matsim.tools.MineConfig;
 
 public class RunMainMatsim {
 
@@ -37,10 +38,7 @@ public class RunMainMatsim {
         }
 
         Config config = ConfigUtils.loadConfig( args ) ;
-
-        // possibly modify config here
-
-        // ---
+        config = new MineConfig(config).modifyConfig();
 
         Scenario scenario = ScenarioUtils.loadScenario(config) ;
 

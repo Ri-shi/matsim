@@ -16,7 +16,7 @@ public class ConcurrentMatsimRuns {
     public void init(String[] args) {
         for (int i = 0; i < this.concurrentRuns.length; i++) {
             String[] s = {args[i]};
-            this.concurrentRuns[i] = new SingleMatsimRun(s);
+            this.concurrentRuns[i] = new SingleMatsimRun(s, ("t"+i));
         }
     }
 
