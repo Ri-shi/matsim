@@ -18,7 +18,7 @@
  * *********************************************************************** */
 
 
-package org.matsim.tree;
+package org.matsim.ConcurrentMatsimRuns;
 
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.Config;
@@ -30,7 +30,7 @@ import org.matsim.tools.MineConfig;
 
 public class RunMainMatsim {
 
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         if ( args.length==0 ) {
             args = new String [] { "scenarios/equil/config.xml" } ;
         } else {
@@ -42,26 +42,13 @@ public class RunMainMatsim {
 
         Scenario scenario = ScenarioUtils.loadScenario(config) ;
 
-        // possibly modify scenario here
-
-        // ---
-
         Controler controler = new Controler( scenario ) ;
 
-        // possibly modify controler here
+        args = new String [] { "scenarios/equil/config.xml",  "scenarios/equil/config.xml",  "scenarios/equil/config.xml",  "scenarios/equil/config.xml",  "scenarios/equil/config.xml",  "scenarios/equil/config.xml",  "scenarios/equil/config.xml"} ;
 
-//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
-
-        // ---
-
-        args = new String [] { "scenarios/equil/config.xml",  "scenarios/equil/config.xml"} ;
-
-        ConcurrentMatsimRuns concurrentMatsimRuns = new ConcurrentMatsimRuns(controler, 2);
+        ConcurrentMatsimRuns concurrentMatsimRuns = new ConcurrentMatsimRuns(controler, 5);
         concurrentMatsimRuns.init(args);
         concurrentMatsimRuns.run();
-
-
-
 
     }
 

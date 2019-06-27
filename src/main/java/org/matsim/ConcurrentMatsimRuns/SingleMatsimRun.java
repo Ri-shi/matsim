@@ -1,6 +1,5 @@
-package org.matsim.tree;
+package org.matsim.ConcurrentMatsimRuns;
 
-import com.google.inject.Inject;
 import org.apache.log4j.Logger;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.core.config.Config;
@@ -15,13 +14,16 @@ public class SingleMatsimRun extends Thread {
     Logger LOG = Logger.getLogger(SingleMatsimRun.class);
     String identifier;
 
-    SingleMatsimRun(String[] args, String identifier){
+    Controler mainController;
+
+    SingleMatsimRun(String[] args, Controler mainController, String identifier){
         this.args = args;
+        this.mainController = mainController;
         this.identifier = identifier;
     }
 
     public void run() {
-        LOG.warn("{}{}{}{}{} Running a MATSim Controler on Thread: "+this.identifier+"... {}{}{}{}{}");
+        LOG.warn("{}{}{}{}{} Running a MATSim Controller on Thread: "+this.identifier+"... {}{}{}{}{}");
 
         IndividualRunConfig individualRunConfig = new IndividualRunConfig();
         Config config = ConfigUtils.loadConfig( this.args ) ;
@@ -29,6 +31,7 @@ public class SingleMatsimRun extends Thread {
 
         Scenario scenario = ScenarioUtils.loadScenario(config) ;
         Controler controler = new Controler( scenario ) ;
+
         controler.run();
 
         LOG.warn("{}{}{}{}{} DONE {}{}{}{}{}");

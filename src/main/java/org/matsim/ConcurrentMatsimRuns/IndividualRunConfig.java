@@ -1,4 +1,4 @@
-package org.matsim.tree;
+package org.matsim.ConcurrentMatsimRuns;
 
 import org.matsim.core.config.Config;
 import org.matsim.core.config.groups.StrategyConfigGroup;
